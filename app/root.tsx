@@ -2,11 +2,10 @@ import {
   isRouteErrorResponse,
   Links,
   Meta,
-  Outlet,
-  Scripts,
+ Scripts,
   ScrollRestoration,
-} from "react-router";
-
+} from "react-router-dom";
+import { Outlet, Link} from "react-router-dom"
 import type { Route } from "./+types/root";
 import "./app.css";
 
@@ -33,9 +32,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <div>
+      <nav style={{ display: "flex", gap: "1rem", padding: "10px" }}>
+        <Link to="/">Welcome</Link>
+        <Link to="/home">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/services">Services</Link>
+        <Link to="/contact">Contact</Link>
+
+      </nav>
+      <hr/>
+      <Outlet/>
+      </div>
+        {/* {children} */}
         <ScrollRestoration />
         <Scripts />
+        
       </body>
     </html>
   );
