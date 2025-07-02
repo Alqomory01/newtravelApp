@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import { Outlet, Link} from "react-router-dom"
 import type { Route } from "./+types/root";
+import { useTheme } from "./context/ThemeContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
@@ -23,40 +25,64 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  // const { theme } = useTheme();
   return (
-    <html lang="en">
-      <head>
+    <ThemeProvider>
+    {/* <html lang="en"> */}
+    <>
+      {/* <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
         <Meta />
         <Links />
-      </head>
-      <body>
-        <div>
+      {/* </head> */}
+      {/* <body > */}
+        <div >
       <nav style={{ display: "flex", gap: "1rem", padding: "10px" }}>
         <Link to="/">Welcome</Link>
         <Link to="/home">Home</Link>
         <Link to="/about">About</Link>
-        <Link to="/services">Services</Link>
+      <Link to="/services">Services</Link>
         <Link to="/contact">Contact</Link>
-
+        <Link to="/api">API</Link>
+        <Link to="/cart">Cart</Link>
+        <Link to="/checkout">CheckOut</Link>
+        <ThemeContent/>
+        {/* <button onClick={toggleTheme}>
+          Switch to {theme === "light" ? "dark" :"light"} mode
+        </button> */}
       </nav>
       <hr/>
       <Outlet/>
+      
       </div>
         {/* {children} */}
         <ScrollRestoration />
         <Scripts />
         
-      </body>
-    </html>
+      {/* </body> */}
+    {/* </html> */}
+    </>
+    </ThemeProvider>
   );
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    // <ThemeProvider>
+   <Outlet />
+  //  </ThemeProvider>
+   
+   );
 }
-
+function ThemeContent() {
+  const { theme, toggleTheme } = useTheme();
+  return (
+    <button onClick={toggleTheme}>
+      Switch to {theme === "light" ? "dark" : "light"} mode
+    </button>
+  );
+}
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";
   let details = "An unexpected error occurred.";

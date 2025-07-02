@@ -51,7 +51,7 @@ export function Welcome() {
     <Stats/>
   </div>
    
-    <p>travel List</p>
+    {/* <p>travel List</p> */}
     
    {/* <Form  /> */}
     </>

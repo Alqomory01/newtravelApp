@@ -40,6 +40,15 @@ body {
   display: grid;
   grid-template-rows: auto auto 1fr auto;
 }
+.light {
+  background-color: white;
+  color: black;
+}
+
+.dark {
+  background-color: #111;
+  color: white;
+}
 
 h1 {
   text-align: center;
